@@ -7,8 +7,8 @@
       "react"
     ],
     /* === Modern ESM package resolution === */
-    "module": "Node16",
-    "moduleResolution": "node16", // or "bundler" (both work for Next 15)
+    "module": "esnext",
+    "moduleResolution": "bundler", // or "bundler" (both work for Next 15)
     /* Useful stricter defaults */
     "strict": true,
     "allowSyntheticDefaultImports": true,

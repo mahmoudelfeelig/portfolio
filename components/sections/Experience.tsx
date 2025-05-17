@@ -1,25 +1,24 @@
 import { FadeIn } from '../motion/FadeIn';
+import ExperienceCard from '../ui/ExperienceCard';
 
 export default function Experience() {
   return (
-    <section id="experience" className="px-6 py-24 md:py-32 max-w-4xl mx-auto">
+    <section id="experience" className="container-section">
       <FadeIn>
-        <h2 className="text-3xl font-bold mb-6">Experience</h2>
+        <h2 className="section-title">Experience</h2>
 
-        <article>
-          <h3 className="text-xl font-semibold">
-            Working Student — IAV GmbH
-          </h3>
-          <p className="text-sm text-accentLight/70">
-            Berlin, Germany · Oct 2024 – Present
-          </p>
-          <ul className="mt-4 list-disc list-inside space-y-2">
-            <li>Conducted data analysis for automotive applications using YOLO</li>
-            <li>Built computer-vision pipelines for image-based insights</li>
-            <li>Developed web applications with Next.js</li>
-            <li>Created iOS apps using Swift</li>
-          </ul>
-        </article>
+        <div className="grid gap-8">
+          <ExperienceCard
+            company="IAV GmbH"
+            role="Working Student – Data & CV"
+            period="Oct 2024 – Present"
+            bullets={[
+              'Built computer-vision pipelines with YOLO',
+              'Developed data analytics dashboards',
+              'Created internal tools in Next.js & Swift',
+            ]}
+          />
+        </div>
       </FadeIn>
     </section>
   );

@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss' with { 'resolution-mode': 'import' };
 
 export default {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
