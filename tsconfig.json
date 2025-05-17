@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    /* === React 18/19 JSX transform === */
+    "jsx": "preserve",
+    "types": [
+      "node",
+      "react"
+    ],
+    /* === Modern ESM package resolution === */
+    "module": "Node16",
+    "moduleResolution": "node16", // or "bundler" (both work for Next 15)
+    /* Useful stricter defaults */
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  /* Tell TS to look at src + global types */
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "global.d.ts",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
