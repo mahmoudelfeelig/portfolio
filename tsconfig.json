@@ -26,6 +26,10 @@
     "incremental": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+       "paths": {
+      "@/*": ["./app/*"],
+      "@/": ["./components/*"],
+    },
     "plugins": [
       {
         "name": "next"
@@ -42,5 +46,6 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "paths": { "@/": ["./"] }
 }

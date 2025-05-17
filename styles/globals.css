@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ensure full-height scrolling */
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+/* slim, subtle scroll-bar (Rockstar-style) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: theme('colors.primaryMid');
+  border-radius: 3px;
+}

@@ -1,36 +1,37 @@
 'use client';
-import {motion, useScroll, useTransform} from 'motion/react';
-import {useRef} from 'react';
-import styles from './Hero.module.css';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero() {
-  const ref = useRef(null);
-  // track page-level scroll
-  const {scrollYProgress} = useScroll({target: ref, offset: ['start start', 'end start']});
-  // map 0-1 progress to scale and Y-translation
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '-20%']);
+  const secRef = useRef<HTMLElement | null>(null);
+
+  // scroll-linked transforms
+  const { scrollYProgress } = useScroll({
+    target: secRef,
+    offset: ['start start', 'end start'],
+  });
+  const scale   = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
+  const y       = useTransform(scrollYProgress, [0, 1], ['0%', '-25%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
   return (
-    <section ref={ref} className={styles.wrapper}>
-      {/* Background video */}
-      <motion.video
-        className={styles.video}
-        style={{scale, y}}
-        src="/hero-video.mp4"
-        playsInline
-        autoPlay
-        muted
-        loop
-        preload="auto"
+    <section ref={secRef} className="relative h-[120vh]">
+      {/* animated gradient bg */}
+      <motion.div
+        style={{ scale, y }}
+        className="absolute inset-0 -z-10 animate-gradient bg-[length:200%_200%] bg-gradient-to-r from-primaryMid via-accentMute to-accentGreen"
       />
-      {/* Floating title */}
+      <div className="absolute inset-0 bg-black/30" />
+
+      {/* title */}
       <motion.h1
-        initial={{opacity: 0, y: 80}}
-        animate={{opacity: 1, y: 0}}
-        transition={{type: 'spring', stiffness: 120, damping: 20}}
-        className={styles.title}>
-        Ahmed&nbsp;· Software&nbsp;Engineer
+        style={{ opacity }}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-5xl md:text-7xl font-extrabold tracking-wider"
+      >
+        Mahmoud Elfeel
+        <span className="block mt-4 text-lg md:text-2xl font-light tracking-widest">
+          Full-Stack Software Engineer
+        </span>
       </motion.h1>
     </section>
   );
