@@ -27,7 +27,6 @@ export default function Contact() {
               mahmoudelfeelig@gmail.com
             </ChakraLink>
           </Text>
-          <Text>📱 +49 1523 8498263</Text>
           <Text>
             💻{' '}
             <ChakraLink
