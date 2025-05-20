@@ -1,41 +1,59 @@
+'use client';
+
+import {
+  Container,
+  Heading,
+  VStack,
+  Text,
+  Link as ChakraLink,
+} from '@chakra-ui/react';
 import { FadeIn } from '../motion/FadeIn';
 
 export default function Contact() {
   return (
-    <section id="contact" className="px-6 py-24 md:py-32 max-w-4xl mx-auto">
+    <Container as="section" id="contact">
       <FadeIn>
-        <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-        <ul className="space-y-4 text-lg">
-          <li>
-            📧 
-            <a
+        <Heading fontSize="3xl" fontWeight="bold" mb={6}>
+          Get in Touch
+        </Heading>
+        <VStack align="start" gap={4} fontSize="lg">
+          <Text>
+            📧{' '}
+            <ChakraLink
               href="mailto:mahmooudelfeelig@gmail.com"
-              className="underline hover:text-accentMute"
+              textDecoration="underline"
+              _hover={{ color: 'accentGreen' }}
             >
               mahmoudelfeelig@gmail.com
-            </a>
-          </li>
-          <li>📱 +49 1523 8498263</li>
-          <li>
-            💻 
-            <a
+            </ChakraLink>
+          </Text>
+          <Text>📱 +49 1523 8498263</Text>
+          <Text>
+            💻{' '}
+            <ChakraLink
               href="https://github.com/mahmoudelfeelig"
-              className="underline hover:text-accentMute"
+              target="_blank"
+              rel="noopener noreferrer"
+              textDecoration="underline"
+              _hover={{ color: 'accentGreen' }}
             >
               github.com/mahmoudelfeelig
-            </a>
-          </li>
-          <li>
-            🌐 
-            <a
+            </ChakraLink>
+          </Text>
+          <Text>
+            🌐{' '}
+            <ChakraLink
               href="https://elfeel.me"
-              className="underline hover:text-accentMute"
+              target="_blank"
+              rel="noopener noreferrer"
+              textDecoration="underline"
+              _hover={{ color: 'accentGreen' }}
             >
               elfeel.me
-            </a>
-          </li>
-        </ul>
+            </ChakraLink>
+          </Text>
+        </VStack>
       </FadeIn>
-    </section>
+    </Container>
   );
 }

@@ -1,25 +1,21 @@
-import { ThemeProvider } from 'next-themes';
-import '../styles/globals.css';
-import type { ReactNode } from 'react';
-import { Inter } from 'next/font/google';
-import Navbar from '../components/ui/Navbar';
-import ScrollRail from '../components/ui/ScrollRail';
+import { ReactNode } from "react";
+import { Inter } from "next/font/google";
+import { Provider } from "../components/ui/provider";
+import Navbar from "../components/ui/Navbar";
+import ScrollRail from "../components/ui/ScrollRail";
+import "../styles/globals.css"; // keep only your custom CSS
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-        >
+        <Provider>
           <Navbar />
           <ScrollRail />
           {children}
-        </ThemeProvider>
+        </Provider>
       </body>
     </html>
   );

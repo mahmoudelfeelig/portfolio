@@ -1,15 +1,22 @@
-"use client";
+'use client';
+
+import { Box } from '@chakra-ui/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import clsx from 'clsx';
+
+const MotionBox = motion(Box);
 
 interface Props {
-  image: string;     // /public/ path
-  height?: number;   // vh
-  flip?: boolean;    // direction
+  readonly image: string;
+  readonly height?: number; // in vh
+  readonly flip?: boolean;
 }
 
-export default function ParallaxBand({ image, height = 50, flip }: Props) {
+export default function ParallaxBand({
+  image,
+  height = 50,
+  flip,
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -22,21 +29,34 @@ export default function ParallaxBand({ image, height = 50, flip }: Props) {
   );
 
   return (
-    <div
+    <Box
       ref={ref}
-      style={{ height: `${height}vh` }}
-      className="relative isolate overflow-hidden"
+      position="relative"
+      isolation="isolate"
+      overflow="hidden"
+      h={`${height}vh`}
     >
-      <motion.div
-        style={{
-          backgroundImage: `url(${image})`,
-          y,
-        }}
-        className={clsx(
-          'absolute inset-0 bg-cover bg-center scale-110',
-          'after:absolute after:inset-0 after:bg-gradient-to-b after:from-transparent after:to-primaryDark/90'
-        )}
-      />
-    </div>
+      <MotionBox
+        style={{ y }}
+        bgImage={`url(${image})`}
+        bgSize="cover"
+        bgPos="center"
+        transform="scale(1.1)"
+        pos="absolute"
+        top={0}
+        left={0}
+        w="full"
+        h="full"
+      >
+        <Box
+          pos="absolute"
+          top={0}
+          left={0}
+          w="full"
+          h="full"
+          bgGradient="linear(to-b, transparent, primaryDarkAlpha.90)"
+        />
+      </MotionBox>
+    </Box>
   );
 }

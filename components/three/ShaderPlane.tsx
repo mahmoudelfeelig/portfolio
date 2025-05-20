@@ -1,12 +1,19 @@
+'use client';
+
+import * as THREE from 'three';
 import { extend, useFrame } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import { useRef } from 'react';
-import * as THREE from 'three';
 
-/* ---------- shaderMaterial ---------- */
+/* ---------- WaveMaterial definition ---------- */
 const WaveMaterial = shaderMaterial(
-  { time: 0, color1: new THREE.Color('#4B3F72'), color2: new THREE.Color('#E3DFFF') },
-  /* vertex */ `
+  {
+    time: 0,
+    color1: new THREE.Color('#4B3F72'),
+    color2: new THREE.Color('#E3DFFF'),
+  },
+  /* vertex shader */ `
+    uniform float time;
     varying vec2 vUv;
     void main() {
       vUv = uv;
@@ -14,7 +21,7 @@ const WaveMaterial = shaderMaterial(
       pos.z += sin(pos.x * 4.0 + time * 2.0) * 0.1;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
     }`,
-  /* fragment */ `
+  /* fragment shader */ `
     uniform float time;
     uniform vec3 color1;
     uniform vec3 color2;
@@ -26,6 +33,7 @@ const WaveMaterial = shaderMaterial(
     }`
 );
 
+// register it so <waveMaterial /> works
 extend({ WaveMaterial });
 
 type WaveMatImpl = typeof WaveMaterial['prototype'];
@@ -33,6 +41,7 @@ type WaveMatImpl = typeof WaveMaterial['prototype'];
 export default function ShaderPlane() {
   const mat = useRef<WaveMatImpl | null>(null);
 
+  // update the “time” uniform each frame
   useFrame(({ clock }) => {
     if (mat.current) mat.current.time = clock.getElapsedTime();
   });

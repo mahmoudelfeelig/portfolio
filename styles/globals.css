@@ -1,32 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* ensure full-height scrolling */
+/* 1) Full-height + smooth scroll */
 html,
 body,
 #__next {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
-/* slim, subtle scroll-bar (Rockstar-style) */
+/* 2) Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.primaryMid');
+  background: #4B3F72;
   border-radius: 3px;
 }
 
-/* core layout helpers */
-.container-section {
-  @apply px-6 py-24 md:py-32 max-w-4xl mx-auto;
-}
-.section-title {
-  @apply text-3xl font-bold mb-8;
-}
-
-/* angled section divider */
+/* 3) Shape divider */
 .shape-divider {
   position: relative;
 }

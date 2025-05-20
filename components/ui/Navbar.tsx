@@ -1,47 +1,77 @@
 'use client';
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
-const links = ['About', 'Experience', 'Projects', 'Contact'];
+import { useState, useEffect } from 'react';
+import { Box, Flex, Link, IconButton, Icon } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import { ArrowUpIcon } from '@heroicons/react/24/outline';
+
+const MotionHeader = motion(Box);
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    let last = window.scrollY;
+    let lastY = window.scrollY;
     const onScroll = () => {
-      const curr = window.scrollY;
-      setHidden(curr > last && curr > 80);
-      last = curr;
+      const currY = window.scrollY;
+      setHidden(currY > lastY && currY > 80);
+      lastY = currY;
     };
-    addEventListener('scroll', onScroll);
-    return () => removeEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <motion.header
-      initial={false}
-      animate={{ y: hidden ? -96 : 0 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-      className="fixed inset-x-0 top-0 z-50 bg-primaryDark/70 backdrop-blur-md"
+    <MotionHeader
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 30 }}
+      position="fixed"
+      top="0"
+      w="100%"
+      bg="rgba(16,16,16,0.8)"
+      backdropFilter="blur(10px)"
+      zIndex={50}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <span className="text-xl font-bold text-accentLight tracking-wider">
+      <Flex
+        maxW="7xl"
+        mx="auto"
+        px={6}
+        py={4}
+        align="center"
+        justify="space-between"
+        color="accentLight"
+      >
+        <Box fontSize="xl" fontWeight="bold" letterSpacing="widest">
           Mahmoud Elfeel
-        </span>
-        <ul className="hidden gap-8 md:flex">
-          {links.map(l => (
-            <li key={l}>
-              <a
-                href={`#${l.toLowerCase()}`}
-                className="text-accentLight/80 hover:text-accentLight transition-colors"
-              >
-                {l}
-              </a>
-            </li>
+        </Box>
+        <Flex as="nav" gap={6} fontSize="sm" fontWeight="medium">
+          {['about', 'experience', 'projects', 'contact'].map((id) => (
+            <Link
+              key={id}
+              href={`#${id}`}
+              _hover={{ color: 'accentGreen' }}
+            >
+              {id[0].toUpperCase() + id.slice(1)}
+            </Link>
           ))}
-        </ul>
-      </nav>
-    </motion.header>
+        </Flex>
+      </Flex>
+
+      {hidden && (
+        <IconButton
+          position="fixed"
+          bottom={6}
+          right={6}
+          aria-label="Back to top"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          bg="rgba(0,196,140,0.2)"
+          _hover={{ bg: 'rgba(0,196,140,0.4)' }}
+          backdropFilter="blur(6px)"
+          size="md"
+        >
+          <Icon as={ArrowUpIcon} boxSize={5} />
+        </IconButton>
+      )}
+    </MotionHeader>
   );
 }

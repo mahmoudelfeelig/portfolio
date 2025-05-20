@@ -1,18 +1,30 @@
+'use client';
+
+import { Container, Heading, Text } from '@chakra-ui/react';
 import { FadeIn } from '../motion/FadeIn';
 
 export default function About() {
   return (
-    <section id="about" className="px-6 py-24 md:py-32 max-w-4xl mx-auto">
+    <Container as="section" id="about">
       <FadeIn>
-        <h2 className="text-3xl font-bold mb-6">About Me</h2>
-        <p className="leading-7 text-accentLight/90">
-          Motivated Networking Engineering student (5ᵗʰ semester) with hands-on
-          experience in data analysis, computer vision, web, and app
-          development. Passionate about applying technical knowledge to
-          real-world problems and recipient of multiple academic scholarships
-          for outstanding performance.
-        </p>
+        <Heading as="h2" size="xl" fontWeight="bold">
+          About Me
+        </Heading>
+        <Text color="accentLight" opacity={0.9} lineHeight="1.75" mb={4}>
+          I’m <Text as="strong">Mahmoud Elfeel</Text>, a passionate software
+          engineer in my 5ᵗʰ semester of Networking Engineering. I specialize in
+          building end-to-end applications—from data-driven computer-vision
+          pipelines (YOLO, Python) to polished web and mobile apps (Next.js,
+          React, Swift). I love tackling complex challenges and turning them
+          into intuitive, user-centric experiences.
+        </Text>
+        <Text color="accentLight" opacity={0.9} lineHeight="1.75">
+          Beyond coding, you’ll often find me experimenting with Three.js
+          shaders, exploring network protocols, or contributing to open-source
+          projects. I’m driven by continuous learning and excited to bring my
+          full-stack expertise and collaborative spirit to innovative teams.
+        </Text>
       </FadeIn>
-    </section>
+    </Container>
   );
 }
