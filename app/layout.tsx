@@ -7,7 +7,12 @@ import "../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export const metadata = {
+  title: 'Mahmoud Elfeel | Portfolio',
+  description: 'A modern, all-around engineer portfolio site.',
+};
+
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
