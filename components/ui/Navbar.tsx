@@ -41,9 +41,15 @@ export default function Navbar() {
         justify="space-between"
         color="accentLight"
       >
-        <Box fontSize="xl" fontWeight="bold" letterSpacing="widest">
+        <Link
+          href="/"
+          fontSize="xl"
+          fontWeight="bold"
+          letterSpacing="widest"
+          _hover={{ color: 'accentGreen' }}
+        >
           Mahmoud Elfeel
-        </Box>
+        </Link>
         <Flex as="nav" gap={6} fontSize="sm" fontWeight="medium">
           {['about', 'experience', 'projects', 'contact'].map((id) => (
             <Link

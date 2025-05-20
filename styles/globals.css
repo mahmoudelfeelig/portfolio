@@ -1,3 +1,10 @@
+:root {
+  --hero-overlay-color: rgba(0, 0, 0, 0.6);
+  --hero-gradient-radius: 40%;
+  --hero-title-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --hero-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
 /* 1) Full-height + smooth scroll */
 html,
 body,
@@ -15,7 +22,7 @@ body,
   border-radius: 3px;
 }
 
-/* 3) Shape divider */
+/* 3) Shape divider (keep if still used in any legacy markup) */
 .shape-divider {
   position: relative;
 }

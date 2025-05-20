@@ -1,72 +1,53 @@
 'use client';
 
 import { useRef } from 'react';
-import { Box, Heading } from '@chakra-ui/react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { sectionVariants } from '../../lib/motionConfig';
+import { Box, Text, Button, Link } from '@chakra-ui/react';
+import styles from './hero.module.css';
 
 export default function Hero() {
-  const secRef = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
-    target: secRef,
+    target: ref,
     offset: ['start start', 'end start'],
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
   const translateY = useTransform(scrollYProgress, [0, 1], ['0%', '-25%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
   return (
-    <Box ref={secRef} position="relative" h="120vh" overflow="hidden">
-      {/* background video */}
+    <section ref={ref} className={styles.wrapper}>
+      {/* Background video */}
       <motion.video
+        className={styles.video}
         src="/hero.mp4"
         autoPlay
         muted
         loop
         playsInline
-        preload="auto"
-        style={{
-          scale,
-          y: translateY,
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        }}
+        style={{ scale, y: translateY }}
       />
 
-      {/* dark overlay */}
-      <Box position="absolute" inset="0" bg="blackAlpha.600" />
+      {/* Overlay */}
+      <div className={styles.overlay} />
 
-      {/* animated heading */}
-      <motion.div
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <Heading
-          textAlign="center"
-          fontSize={{ base: '5xl', md: '7xl' }}
-          fontWeight="extrabold"
-          color="white"
+      {/* Title and CTA wrapper */}
+      <Box className={styles.titleBox}>
+        <h1 className={styles.title}>Mahmoud Elfeel</h1>
+        <Text
+          fontSize={{ base: 'md', md: 'xl' }}
+          color="gray.200"
+          mt={4}
+          mb={6}
         >
-          Mahmoud Elfeel
-          <Box
-            as="span"
-            display="block"
-            mt={4}
-            fontSize={{ base: 'lg', md: '2xl' }}
-            fontWeight="light"
-            letterSpacing="widest"
-          >
-            Full-Stack Software Engineer
-          </Box>
-        </Heading>
-      </motion.div>
-    </Box>
+          I build full-stack apps, computer-vision pipelines, and interactive 3D experiences that solve real-world problems.
+        </Text>
+        <Link href="#projects" _hover={{ textDecoration: 'none' }}>
+          <Button colorScheme="green" size="lg">
+            See My Work
+          </Button>
+        </Link>
+      </Box>
+    </section>
   );
 }

@@ -5,9 +5,10 @@ import { Box, Flex, Text, Link, IconButton, Icon } from '@chakra-ui/react';
 import {
   ArrowUpIcon,
   EnvelopeIcon,
-  CodeBracketIcon,
-  LinkIcon,
 } from '@heroicons/react/24/outline';
+import { FaGithub } from 'react-icons/fa';
+import { GiElephant } from 'react-icons/gi';
+
 
 export default function Footer() {
   const [visible, setVisible] = useState(false);
@@ -60,7 +61,7 @@ export default function Footer() {
             _hover={{ color: 'accentGreen' }}
             aria-label="GitHub"
           >
-            <Icon as={CodeBracketIcon} boxSize={5} />
+            <Icon as={FaGithub} boxSize={5} />
           </Link>
           <Link
             href="https://elfeel.me"
@@ -69,7 +70,7 @@ export default function Footer() {
             _hover={{ color: 'accentGreen' }}
             aria-label="Website"
           >
-            <Icon as={LinkIcon} boxSize={5} />
+            <Icon as={GiElephant} boxSize={5} />
           </Link>
         </Flex>
       </Flex>
@@ -82,8 +83,8 @@ export default function Footer() {
           zIndex={50}
           aria-label="Back to top"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          bg="rgba(0,196,140,0.2)"
-          _hover={{ bg: 'rgba(0,196,140,0.4)' }}
+          bg="rgba(13, 236, 13, 0.75)"
+          _hover={{ bg: 'rgba(13, 236, 13, 0.4)' }}
           backdropFilter="blur(6px)"
           size="md"
         >
